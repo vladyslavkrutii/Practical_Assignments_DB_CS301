@@ -1,1 +1,3 @@
-# PA1_DB
+# Practical Assignments Database (CS301)
+
+**Студент:** Владислав Крутій
