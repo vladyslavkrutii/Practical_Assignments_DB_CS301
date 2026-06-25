@@ -1,4 +1,3 @@
-import uuid
 import random
 from datetime import datetime, timedelta
 
@@ -15,9 +14,9 @@ DATABASE = 'carservice' # put your credentials here
 PORT = '5432' # put your credentials here
 
 # Data volume settings
-CLIENTS_COUNT = 100_000
-PRODUCTS_COUNT = 1_000
-ORDERS_COUNT = 1_000_000
+CLIENTS_COUNT = 100_000 # клієнти СТО
+CARS_COUNT = 1_000 # кількість автомобілів
+ORDERS_COUNT = 1_000_000 # кількість записів замовлень
 CHUNK_SIZE = 10_000
 
 fake = Faker()
@@ -75,7 +74,7 @@ def insert_cars(cursor):
             fake.word(),
             random.randint(2008, 2026),
         )
-        for _ in range(PRODUCTS_COUNT)
+        for _ in range(CARS_COUNT)
     ]
 
     execute_values(cursor, car_insert_query, car_data)
