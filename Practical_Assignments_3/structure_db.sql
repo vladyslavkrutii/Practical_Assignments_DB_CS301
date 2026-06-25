@@ -85,3 +85,36 @@ begin
     where product_id = p_product_id;
 end;
 $$ language plpgsql;
+
+-- task 4
+
+create or replace function update_order_total()
+returns trigger as $$
+begin
+    update orders
+    set total_amount = calculate_order_total(coalesce(new.order_id, old.order_id))
+    where order_id = coalesce(new.order_id, old.order_id);
+    return null;
+end;
+$$ language plpgsql;
+
+create trigger total_trigger
+after insert or update or delete on order_items
+for each row
+execute function update_order_total();
+
+-- task 5
+
+create or replace function log_order()
+returns trigger as $$
+begin
+    insert into order_log(order_id, customer_id, action)
+    values(new.order_id, new.customer_id, 'create');
+    return new;
+end;
+$$ language plpgsql;
+
+create trigger log_trigger
+after insert on orders
+for each row
+execute function log_order();
