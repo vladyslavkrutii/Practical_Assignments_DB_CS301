@@ -118,3 +118,25 @@ create trigger log_trigger
 after insert on orders
 for each row
 execute function log_order();
+
+
+-- task 6
+
+insert into customers(customer_id, full_name, email, balance) 
+values(1, 'test', 'test@gmail.com', 1500.00);
+
+insert into products(product_id, product_name, price, stock_quantity) 
+values(1, 'test product 1', 550.00, 15);
+
+insert into products(product_id, product_name, price, stock_quantity) 
+values(2, 'test product 2', 50.00, 25);
+
+call create_order(1);
+
+call add_product_to_order(1, 1, 1);
+call add_product_to_order(1, 2, 1);
+
+select * from orders;
+select * from order_items;
+select * from products;
+select * from order_log;
