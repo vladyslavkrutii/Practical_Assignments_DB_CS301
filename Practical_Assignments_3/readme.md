@@ -13,7 +13,7 @@ task 3 — процедура add_product_to_order
 Додає товар до замовлення і також перевіряє що кількість більше 0 і що на складі достатньо товару. Зменшує stock_quantity після додавання
 
 task 4 — тригер total_trigger
-Спрацьовує після insert, update, delete на order_items. Fgltqnbnm total_amount в orders через функцію з task 1
+Спрацьовує після insert, update, delete на order_items. Апдейтить total_amount в orders через функцію з task 1
 
 task 5 — тригер log_trigger
 Записує в order_log кожне нове замовлення
