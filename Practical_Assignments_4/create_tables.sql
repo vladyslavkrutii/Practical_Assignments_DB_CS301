@@ -6,12 +6,13 @@
 -- створення нової бд
 --  CREATE DATABASE audi_db;
 
--- drop table if exists employees cascade;
--- drop table if exists cars cascade;
--- drop table if exists services cascade;
--- drop table if exists orders cascade;
--- drop table if exists order_services cascade;
--- drop table if exists test_drives cascade;
+drop table if exists customers cascade;
+drop table if exists employees cascade;
+drop table if exists cars cascade;
+drop table if exists services cascade;
+drop table if exists orders cascade;
+drop table if exists order_services cascade;
+drop table if exists test_drives cascade;
  
 --  customers наші клієнти які можуть купить авто
 create table customers (
