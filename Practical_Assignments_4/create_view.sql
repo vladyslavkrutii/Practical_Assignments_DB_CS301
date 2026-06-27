@@ -1,25 +1,24 @@
-CREATE OR REPLACE VIEW schedules AS
+CREATE OR REPLACE VIEW order_summary AS
 SELECT
-    course.course_display_short_name,
-    course.course_display_full_name,
-    course.course_description,
-    instructor.first_name AS instructor_first_name,
-    instructor.last_name AS instructor_last_name,
-    instructor.email AS instructor_email,
-    CONCAT(room.building, ', ', room.floor, ', ', room.number, ', ', room.display_name) AS address,
-    schedule.week_day,
-    lesson.id AS lesson_id,
-    lesson.start_time AS lesson_start_time,
-    lesson.end_time AS lesson_end_time
-FROM schedule
-JOIN courses course
-    ON schedule.course_id = course.id
-JOIN instructors instructor
-    ON schedule.instructor_id = instructor.id
-JOIN rooms room
-    ON schedule.room_id = room.id
-JOIN lessons_schedule lesson
-    ON schedule.lesson_schedule_id = lesson.id;
+    customer.first_name AS customer_first_name,
+    customer.last_name AS customer_last_name,
+    customer.email AS customer_email,
+    car.model AS car_model,
+    car.year AS car_year,
+    car.color AS car_color,
+    employee.first_name AS employee_first_name,
+    employee.last_name AS employee_last_name,
+    employee.position AS employee_position,
+    orders.order_date,
+    orders.status AS order_status,
+    orders.total_price
+FROM orders
+JOIN customers customer
+    ON orders.customer_id = customer.customer_id
+JOIN cars car
+    ON orders.car_id = car.car_id
+JOIN employees employee
+    ON orders.employee_id = employee.employee_id;
 
 -- To check performance, run separately, not inside CREATE VIEW:
--- EXPLAIN ANALYZE SELECT * FROM schedules;
+-- EXPLAIN ANALYZE SELECT * FROM order_summary;

@@ -68,7 +68,7 @@ def insert_data():
                 ))
             execute_values(cur, "insert into cars (model, year, color, price, vin) values %s", cars_data)
 
-           # клієнти
+            # клієнти
             print(f"Generating {CUSTOMERS_COUNT} customers.....")
             email_counter = 1
             for start in range(0, CUSTOMERS_COUNT, CHUNK_SIZE):
@@ -76,7 +76,7 @@ def insert_data():
                 for _ in range(CHUNK_SIZE):
                     f_name = fake.first_name()
                     l_name = fake.last_name()
-                    email = f"{f_name.lower()}.{l_name.lower()}{email_counter}@audi-test"
+                    email = f"{f_name.lower()}.{l_name.lower()}{email_counter}@audi-test.com"
                     email_counter += 1
                     cust_data.append((
                         f_name,
@@ -86,7 +86,7 @@ def insert_data():
                         fake.city()[:50]
                     ))
                 execute_values(cur, "insert into customers (first_name, last_name, email, phone, city) values %s", cust_data)
-            cur.execute("select customer_id from customers limit 20000;")
+            cur.execute("select customer_id from customers;")
             customer_ids = [r[0] for r in cur.fetchall()]
 
             cur.execute("select car_id from cars;")
@@ -110,7 +110,7 @@ def insert_data():
                     ))
                 execute_values(cur, "insert into orders (customer_id, car_id, employee_id, order_date, status, total_price) values %s", order_data)
 
-            cur.execute("select order_id from orders limit 30000;")
+            cur.execute("select order_id from orders;")
             order_ids = [r[0] for r in cur.fetchall()]
 
             cur.execute("select service_id from services;")
