@@ -61,7 +61,7 @@ create table orders (
     employee_id int references employees(employee_id),--менеджер який оформив замовлення
     order_date date not null default current_date,
     status varchar(25) not null default 'pending' check(status in ('pending', 'confirmed', 'cancelled', 'completed')),
-    total_price numeric(10, 2)-- фінальна ціна
+    total_price decimal(10, 2)-- фінальна ціна
 );
  
 
