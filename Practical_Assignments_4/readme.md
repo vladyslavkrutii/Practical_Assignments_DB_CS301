@@ -14,11 +14,11 @@ test_drives тест-драйв (1:1 через unique)
 ![table](img/table.jpg)
 
 ## relationships
-customers | orders 1:many
-cars | orders 1:many
-employees | orders 1:many
-orders | services many:many (order_services)
-orders | test_drives 1:1 (unique order_id)
+1. customers | orders 1:many
+2. cars | orders 1:many
+3. employees | orders 1:many
+4. orders | services many:many (order_services)
+5. orders | test_drives 1:1 (unique order_id)
 
 ## ERD
 ![ERD](img/erd.jpg)
